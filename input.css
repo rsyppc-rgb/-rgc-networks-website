@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222 47% 6%;
+  --foreground: 210 40% 98%;
+
+  --card: 222 40% 9%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222 40% 9%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 199 89% 48%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 217 33% 15%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217 33% 15%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 190 95% 55%;
+  --accent-foreground: 222 47% 6%;
+
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217 33% 18%;
+  --input: 217 33% 18%;
+  --ring: 199 89% 48%;
+
+  --radius: 0.75rem;
+
+  --gradient-primary: linear-gradient(135deg, hsl(199 89% 48%), hsl(217 91% 60%));
+  --gradient-hero: radial-gradient(circle at 30% 20%, hsl(199 89% 48% / 0.25), transparent 45%), radial-gradient(circle at 80% 70%, hsl(217 91% 60% / 0.18), transparent 45%);
+  --shadow-glow: 0 0 45px hsl(199 89% 48% / 0.35);
+  --shadow-card: 0 4px 24px hsl(222 47% 3% / 0.5);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-bg {
+  background-color: hsl(var(--background));
+  background-image: var(--gradient-hero), url('hero-tech.jpg');
+  background-size: auto, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.animate-in {
+  animation: fade-slide-in 0.7s ease-out both;
+}
+@keyframes fade-slide-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#testimonial-track {
+  transition: transform 0.5s ease;
+}
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .chevron { transform: rotate(180deg); }
+.chevron { transition: transform 0.2s ease; }
