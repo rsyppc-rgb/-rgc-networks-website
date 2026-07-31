@@ -76,9 +76,9 @@
         <a href="index.html" class="px-4 py-2 rounded-md text-sm font-medium text-primary transition-colors">Inicio</a>
         <a href="servicios.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Servicios</a>
         <a href="nosotros.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Nosotros</a>
+        <a href="contacto.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Contacto</a>
         <a href="casos.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Casos de Éxito</a>
         <a href="recursos.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Recursos</a>
-        <a href="contacto.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Contacto</a>
         <a href="contacto.html" class="ml-4">
           <button class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-glow px-4 py-2 rounded-md text-sm">
             Solicitar Asesoría
@@ -99,9 +99,9 @@
         <a href="index.html" class="w-full text-left px-4 py-2 rounded-md text-primary bg-secondary">Inicio</a>
         <a href="servicios.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Servicios</a>
         <a href="nosotros.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Nosotros</a>
+        <a href="contacto.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Contacto</a>
         <a href="casos.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Casos de Éxito</a>
         <a href="recursos.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Recursos</a>
-        <a href="contacto.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Contacto</a>
         <a href="contacto.html">
           <button class="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-4 py-2 rounded-md">
             Solicitar Asesoría
@@ -325,7 +325,26 @@
       </p>
     </div>
 
-    <!-- Container where real Google Reviews populate via API -->
+    <!-- Rating Summary & Google CTA -->
+    <div class="max-w-4xl mx-auto bg-secondary/40 border border-border rounded-2xl p-8 text-center mb-12 shadow-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center space-x-4">
+          <div id="google-rating-value" class="text-4xl font-extrabold text-foreground">5.0</div>
+          <div class="text-left">
+            <div id="google-rating-stars" class="flex text-amber-400 mb-1">★★★★★</div>
+            <p id="google-rating-count" class="text-xs text-muted-foreground">Valoración en Google Maps</p>
+          </div>
+        </div>
+        <a href="https://share.google/kxt9EVnMzxKgr8iEg" target="_blank" rel="noopener noreferrer">
+          <button class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-6 py-2.5 rounded-md text-sm shadow-glow inline-flex items-center space-x-2 transition-all">
+            <span>Déjanos una Opinión en Google</span>
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <!-- Container where real Google Reviews populate via server-side API -->
     <div id="google-reviews-feed" class="max-w-5xl mx-auto min-h-[160px]">
       <div class="bg-secondary/30 border border-border rounded-xl p-8 text-center">
         <div class="flex justify-center items-center space-x-1 text-amber-400 mb-3">
@@ -341,46 +360,50 @@
   </div>
 </section>
 
-<!-- Client-side Google Places API Auto-Fetch Script -->
+<!-- Live Google Reviews: fetched server-side via Netlify Function, never exposes an API key to the browser -->
 <script>
-(function() {
-  // Function to load Google Reviews automatically via API or Widget
-  function loadGoogleReviews() {
-    const feedContainer = document.getElementById('google-reviews-feed');
-    if (!feedContainer) return;
-
-    // Place ID or Google API endpoint configuration
-    // When Google Places API key or Place ID is active, reviews render automatically
-    const GOOGLE_PLACE_ID = "kxt9EVnMzxKgr8iEg";
-    
-    // Check if Google Places Service or Widget endpoint is available
-    if (window.google && window.google.maps && window.google.maps.places) {
-      const service = new google.maps.places.PlacesService(document.createElement('div'));
-      service.getDetails({ placeId: GOOGLE_PLACE_ID, fields: ['reviews', 'rating', 'user_ratings_total'] }, function(place, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK && place.reviews && place.reviews.length > 0) {
-          let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
-          place.reviews.forEach(function(rev) {
-            html += `
-              <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
-                <div class="flex items-center space-x-3 mb-3">
-                  <img src="${rev.profile_photo_url}" alt="${rev.author_name}" class="w-10 h-10 rounded-full">
-                  <div>
-                    <h4 class="text-sm font-semibold text-foreground">${rev.author_name}</h4>
-                    <div class="text-amber-400 text-xs">★ ★ ★ ★ ★</div>
-                  </div>
-                </div>
-                <p class="text-xs text-muted-foreground line-clamp-4">"${rev.text}"</p>
-              </div>
-            `;
-          });
-          html += '</div>';
-          feedContainer.innerHTML = html;
-        }
-      });
-    }
+(function () {
+  function starString(n) {
+    var r = Math.round(n || 0);
+    return "★★★★★☆☆☆☆☆".slice(5 - r, 10 - r);
   }
 
-  document.addEventListener('DOMContentLoaded', loadGoogleReviews);
+  function renderReviews(data) {
+    var ratingBox = document.getElementById("google-rating-value");
+    var countBox = document.getElementById("google-rating-count");
+    var starsBox = document.getElementById("google-rating-stars");
+    var feed = document.getElementById("google-reviews-feed");
+    if (!feed) return;
+
+    if (ratingBox && data.rating) ratingBox.textContent = data.rating.toFixed(1);
+    if (countBox && data.userRatingCount) countBox.textContent = data.userRatingCount + " reseñas en Google";
+    if (starsBox && data.rating) starsBox.textContent = starString(data.rating);
+
+    if (!data.reviews || data.reviews.length === 0) return;
+
+    var html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
+    data.reviews.forEach(function (rev) {
+      var avatar = rev.authorPhotoUrl
+        ? '<img src="' + rev.authorPhotoUrl + '" alt="' + rev.authorName + '" class="w-10 h-10 rounded-full">'
+        : '<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">' +
+          rev.authorName.charAt(0) + "</div>";
+      html +=
+        '<div class="bg-card border border-border rounded-xl p-6 shadow-sm">' +
+        '<div class="flex items-center space-x-3 mb-3">' + avatar +
+        '<div><h4 class="text-sm font-semibold text-foreground">' + rev.authorName + "</h4>" +
+        '<div class="text-amber-400 text-xs">' + starString(rev.rating) + "</div></div></div>" +
+        '<p class="text-xs text-muted-foreground line-clamp-4">"' + rev.text + '"</p></div>';
+    });
+    html += "</div>";
+    feed.innerHTML = html;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/api/google-reviews")
+      .then(function (r) { if (!r.ok) throw new Error("bad status"); return r.json(); })
+      .then(renderReviews)
+      .catch(function () { /* silent: static fallback markup already in DOM */ });
+  });
 })();
 </script>
 

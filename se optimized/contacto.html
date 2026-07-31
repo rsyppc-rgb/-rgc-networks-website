@@ -62,9 +62,9 @@
         <a href="index.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Inicio</a>
         <a href="servicios.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Servicios</a>
         <a href="nosotros.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Nosotros</a>
+        <a href="contacto.html" class="px-4 py-2 rounded-md text-sm font-medium text-primary transition-colors">Contacto</a>
         <a href="casos.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Casos de Éxito</a>
         <a href="recursos.html" class="px-4 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Recursos</a>
-        <a href="contacto.html" class="px-4 py-2 rounded-md text-sm font-medium text-primary transition-colors">Contacto</a>
         <a href="contacto.html" class="ml-4">
           <button class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-glow px-4 py-2 rounded-md text-sm">Solicitar Asesoría</button>
         </a>
@@ -79,9 +79,9 @@
         <a href="index.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Inicio</a>
         <a href="servicios.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Servicios</a>
         <a href="nosotros.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Nosotros</a>
+        <a href="contacto.html" class="w-full text-left px-4 py-2 rounded-md text-primary bg-secondary">Contacto</a>
         <a href="casos.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Casos de Éxito</a>
         <a href="recursos.html" class="w-full text-left px-4 py-2 rounded-md text-foreground/80">Recursos</a>
-        <a href="contacto.html" class="w-full text-left px-4 py-2 rounded-md text-primary bg-secondary">Contacto</a>
         <a href="contacto.html">
           <button class="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-4 py-2 rounded-md">Solicitar Asesoría</button>
         </a>
@@ -105,18 +105,59 @@
           <i data-lucide="phone" class="w-8 h-8 text-primary"></i>
         </div>
         <h2 class="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">WhatsApp</h2>
-        <p class="text-muted-foreground mb-4">Atención inmediata para consultas y soporte urgente.</p>
+        <p class="text-muted-foreground mb-4">Haz clic aquí para hablar con nosotros por WhatsApp.</p>
         <span class="text-primary font-semibold">+58 414-9008983</span>
       </a>
 
-      <a href="mailto:rene.gonzalez.clemant@outlook.com" class="bg-card border-2 border-border rounded-2xl p-8 text-center hover:border-primary transition-all duration-300 hover:shadow-glow group">
-        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+      <div class="bg-card border-2 border-border rounded-2xl p-8 hover:border-primary transition-all duration-300 hover:shadow-glow">
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
           <i data-lucide="mail" class="w-8 h-8 text-primary"></i>
         </div>
-        <h2 class="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Correo Electrónico</h2>
-        <p class="text-muted-foreground mb-4">Para cotizaciones, proyectos y consultas detalladas.</p>
-        <span class="text-primary font-semibold break-all">rene.gonzalez@rgc-networks.com</span>
-      </a>
+        <h2 class="text-2xl font-bold text-foreground mb-2 text-center">Correo</h2>
+        <p class="text-muted-foreground mb-3 text-center text-sm">
+          Usa el formulario a continuación o escríbenos directamente a
+        </p>
+        <div class="flex items-center justify-center gap-2 mb-4 flex-wrap">
+          <span id="contact-email-text" class="text-primary font-medium text-sm break-all">rene.gonzalez@rgc-networks.com</span>
+          <button type="button" id="copy-email-btn"
+            class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span id="copy-email-btn-label">Copiar</span>
+          </button>
+        </div>
+
+        <form id="contact-form" class="space-y-3 text-left">
+          <input type="hidden" name="access_key" value="41710678-b0e6-44c4-bdc4-c2ac4ce38dd5">
+          <input type="hidden" name="subject" value="Nuevo mensaje desde rgc-networks.com">
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+
+          <div>
+            <label for="contact-name" class="sr-only">Nombre</label>
+            <input type="text" name="name" id="contact-name" placeholder="Nombre completo" required
+              class="w-full px-4 py-3 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+          </div>
+          <div>
+            <label for="contact-email" class="sr-only">Correo electrónico</label>
+            <input type="email" name="email" id="contact-email" placeholder="Correo electrónico" required
+              class="w-full px-4 py-3 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+          </div>
+          <div>
+            <label for="contact-phone" class="sr-only">Teléfono</label>
+            <input type="tel" name="phone" id="contact-phone" placeholder="Teléfono (opcional)"
+              class="w-full px-4 py-3 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
+          </div>
+          <div>
+            <label for="contact-message" class="sr-only">Mensaje</label>
+            <textarea name="message" id="contact-message" rows="4" placeholder="¿En qué podemos ayudarte?" required
+              class="w-full px-4 py-3 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          </div>
+          <button type="submit"
+            class="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-glow px-4 py-3 rounded-md transition-colors">
+            Enviar Mensaje
+          </button>
+          <p id="contact-form-result" class="text-sm text-center min-h-[1.25rem]"></p>
+        </form>
+      </div>
     </div>
 
     <div class="bg-secondary/30 border border-border rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto">
@@ -192,6 +233,86 @@
     iconMenu.classList.toggle('hidden');
     iconClose.classList.toggle('hidden');
   });
+
+  const copyEmailBtn = document.getElementById('copy-email-btn');
+  const copyEmailBtnLabel = document.getElementById('copy-email-btn-label');
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', () => {
+      const email = document.getElementById('contact-email-text').textContent;
+
+      const showCopied = () => {
+        copyEmailBtnLabel.textContent = '¡Copiado!';
+        setTimeout(() => {
+          copyEmailBtnLabel.textContent = 'Copiar';
+        }, 2000);
+      };
+
+      const fallbackCopy = () => {
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showCopied();
+        } catch (err) {
+          copyEmailBtnLabel.textContent = 'Copia manual';
+        }
+        document.body.removeChild(textarea);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showCopied, fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    });
+  }
+
+  const contactForm = document.getElementById('contact-form');
+  const contactFormResult = document.getElementById('contact-form-result');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const formData = new FormData(contactForm);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      submitBtn.disabled = true;
+      contactFormResult.textContent = 'Enviando...';
+      contactFormResult.classList.remove('text-green-500', 'text-red-500');
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          const result = await response.json();
+          if (response.status === 200) {
+            contactFormResult.textContent = '¡Mensaje enviado! Te responderemos pronto.';
+            contactFormResult.classList.add('text-green-500');
+            contactForm.reset();
+          } else {
+            contactFormResult.textContent = result.message || 'Algo salió mal. Intenta de nuevo.';
+            contactFormResult.classList.add('text-red-500');
+          }
+        })
+        .catch(() => {
+          contactFormResult.textContent = 'Algo salió mal. Intenta de nuevo.';
+          contactFormResult.classList.add('text-red-500');
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+        });
+    });
+  }
 </script>
 
 </body>

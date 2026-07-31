@@ -8,3 +8,4 @@
 /recursos                       /recursos.html                       200
 /contacto                       /contacto.html                       200
 /industrias                     /industrias.html                     200
+/api/google-reviews             /.netlify/functions/google-reviews   200
