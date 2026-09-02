@@ -204,6 +204,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="bg-card border border-border rounded-2xl p-8 md:p-12 mb-12 shadow-card">
         <h2 class="text-3xl font-bold text-foreground mb-2 text-center">Certificaciones</h2>
         <p class="text-muted-foreground text-center mb-8">Formación continua respaldada por Cisco y otros líderes de la industria</p>
+
+        <!-- Official certification badges -->
+        <div class="flex flex-wrap justify-center items-start gap-6 sm:gap-8 mb-10">
+          <figure class="flex flex-col items-center">
+            <img src="img/cert-ccna.jpg" alt="Insignia oficial Cisco Certified CCNA" width="112" height="112" class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-white p-2 shadow-card" loading="lazy" />
+            <figcaption class="text-xs text-muted-foreground mt-2">CCNA</figcaption>
+          </figure>
+          <figure class="flex flex-col items-center">
+            <img src="img/cert-cisco-enterprise.jpg" alt="Insignia oficial Cisco Certified Specialist – Enterprise" width="112" height="112" class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-white p-2 shadow-card" loading="lazy" />
+            <figcaption class="text-xs text-muted-foreground mt-2">Enterprise Specialist</figcaption>
+          </figure>
+          <figure class="flex flex-col items-center">
+            <img src="img/cert-cisco-security.jpg" alt="Insignia oficial Cisco Certified Specialist – Security" width="112" height="112" class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-white p-2 shadow-card" loading="lazy" />
+            <figcaption class="text-xs text-muted-foreground mt-2">Security Specialist</figcaption>
+          </figure>
+        </div>
+
+        <div class="bg-secondary/40 border border-border rounded-xl p-6 max-w-3xl mx-auto mb-10">
+          <div class="flex items-start gap-3">
+            <i data-lucide="shield-check" class="w-6 h-6 text-primary flex-shrink-0 mt-0.5"></i>
+            <div class="w-full">
+              <h3 class="text-foreground font-semibold mb-1">Verifícanos: somos reales</h3>
+              <p class="text-muted-foreground text-sm mb-4">
+                Sabemos que hoy existen muchos sitios web poco confiables. Por eso te invitamos a comprobar tú mismo nuestras
+                certificaciones en la página oficial de Cisco usando este enlace:
+                <a href="https://www.cisco.com/go/verifycertificate" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">www.cisco.com/go/verifycertificate</a>
+              </p>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-muted-foreground text-sm">Número de certificación:</span>
+                <code class="text-foreground text-sm bg-background border border-border rounded px-2 py-1 break-all">573327cdf39f40289e94e93021484ca3</code>
+                <button type="button" data-copy="573327cdf39f40289e94e93021484ca3" class="copy-cert inline-flex items-center gap-1.5 text-sm font-medium text-primary border border-primary rounded px-3 py-1.5 hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <i data-lucide="copy" class="w-4 h-4"></i><span class="copy-label">Copiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
           <div class="flex items-start gap-3 bg-secondary/30 border border-border rounded-lg p-4">
             <i data-lucide="badge-check" class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"></i>
@@ -354,6 +392,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     mobileMenu.classList.toggle('hidden');
     iconMenu.classList.toggle('hidden');
     iconClose.classList.toggle('hidden');
+  });
+
+  document.querySelectorAll('.copy-cert').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const value = btn.getAttribute('data-copy');
+      const label = btn.querySelector('.copy-label');
+      try {
+        await navigator.clipboard.writeText(value);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = value; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+      }
+      if (label) {
+        const prev = label.textContent;
+        label.textContent = '¡Copiado!';
+        setTimeout(() => { label.textContent = prev; }, 2000);
+      }
+    });
   });
 </script>
 
