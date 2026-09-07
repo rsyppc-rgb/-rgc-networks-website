@@ -453,19 +453,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 
   const track = document.getElementById('testimonial-track');
-  const slides = Array.from(track.children);
-  let tIndex = 0;
-  function tUpdate() {
-    const width = slides[0].getBoundingClientRect().width;
-    track.style.transform = `translateX(-${tIndex * width}px)`;
+  if (track) {
+    const slides = Array.from(track.children);
+    let tIndex = 0;
+    function tUpdate() {
+      const width = slides[0].getBoundingClientRect().width;
+      track.style.transform = `translateX(-${tIndex * width}px)`;
+    }
+    function tNext() { tIndex = (tIndex + 1) % slides.length; tUpdate(); }
+    function tPrev() { tIndex = (tIndex - 1 + slides.length) % slides.length; tUpdate(); }
+    const tNextBtn = document.getElementById('t-next');
+    const tPrevBtn = document.getElementById('t-prev');
+    if (tNextBtn) tNextBtn.addEventListener('click', tNext);
+    if (tPrevBtn) tPrevBtn.addEventListener('click', tPrev);
+    window.addEventListener('resize', tUpdate);
+    setInterval(tNext, 4000);
+    tUpdate();
   }
-  function tNext() { tIndex = (tIndex + 1) % slides.length; tUpdate(); }
-  function tPrev() { tIndex = (tIndex - 1 + slides.length) % slides.length; tUpdate(); }
-  document.getElementById('t-next').addEventListener('click', tNext);
-  document.getElementById('t-prev').addEventListener('click', tPrev);
-  window.addEventListener('resize', tUpdate);
-  setInterval(tNext, 4000);
-  tUpdate();
 
   document.querySelectorAll('.copy-cert').forEach((btn) => {
     btn.addEventListener('click', async () => {
